@@ -1,0 +1,29 @@
+2181. Merge Nodes in Between Zeros
+c++
+
+https://leetcode.com/contest/weekly-contest-281/problems/merge-nodes-in-between-zeros/
+
+class Solution {
+public:
+    ListNode* mergeNodes(ListNode* head) {
+        ListNode* start;
+        head=head->next;
+        start=head;
+        while(start)
+        {
+            ListNode* curr=start;
+            int sum=0;
+            while(curr->val!=0)
+            {
+                sum=sum+curr->val;
+                curr=curr->next;
+            }
+            start->val=sum;
+            start->next=curr->next;
+            start=start->next;
+        }
+        return head;
+        
+        
+    }
+};
