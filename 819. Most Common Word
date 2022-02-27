@@ -1,0 +1,33 @@
+# leetcode-imp
+
+https://leetcode.com/problems/most-common-word/
+
+class Solution {
+public:
+    string mostCommonWord(string paragraph, vector<string>& banned) {
+        unordered_map<string,int> ump;
+        string str,ans;
+        int temp = 0;
+        for(int i=0;i<paragraph.length();i++){
+            if (paragraph[i] >= 'a' && paragraph[i] <= 'z' || paragraph[i] >= 'A' && paragraph[i] <= 'Z') 
+                str += tolower(paragraph[i]);
+            else{
+                 if(str != "")
+                    ump[str]++,str = "";
+            }
+        }
+        ump[str]++;
+        for(auto &i: banned)  //banned part will be 0
+            ump[i] = 0;
+        
+        for(auto &i : ump)
+            if(i.second > temp)
+            {
+                ans = i.first;
+                temp = i.second;
+            }
+                
+        
+        return ans;
+    }
+};
