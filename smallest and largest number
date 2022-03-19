@@ -1,0 +1,30 @@
+# leetcode-imp
+
+like in this you have been a given a vector with n number try to make biggest possible number and smallest possible 0 should not come at first place
+
+https://leetcode.com/problems/largest-number/
+
+class Solution {
+public:
+    
+static bool oper(int x, int y)
+        {
+            string X = to_string(x);
+            string Y = to_string(y);
+            return X + Y > Y + X;              // just change the sign you will get smallest
+        }
+    string largestNumber(vector<int> &nums)
+    {
+        sort(nums.begin(), nums.end(), oper);
+        string ans;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            ans += to_string(nums[i]);
+        }
+        while (ans.length() > 1 && ans[0] == '0')
+        {
+            ans = ans.substr(1);
+        }
+        return ans;
+    }
+};
